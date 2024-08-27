@@ -21,7 +21,7 @@ You can install the development version of roadnetdb like so:
 
 ``` r
 install.packages("remotes")
-remotes::install_git("https://github.com/gitlab/ando/roadnetdb")
+remotes::install_git("https://github.com/NONONOexe/roadnetdb")
 ```
 
 ## Usage
