@@ -1,0 +1,3 @@
+CREATE TEMPORARY TABLE temp_area (
+  geom geometry(MULTIPOLYGON, 4326) NOT NULL
+)

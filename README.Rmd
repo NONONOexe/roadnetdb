@@ -1,14 +1,27 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+devtools::load_all()
+```
 
 # roadnetdb
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-roadnetdb is package for construction and operation of road networks on
-a database. This package provides functions using pgRouting and
-OpenStreetMap road data.
+roadnetdb is package for construction and operation of road networks on a database. 
+This package provides functions using pgRouting and OpenStreetMap road data.
 
 > roadnetdbはデータベース上で道路ネットワークを構築・運用するためのパッケージです。
 > このパッケージはpgRoutingとOpenStreetMapの道路データを用いた関数を提供します。
@@ -30,46 +43,47 @@ Load the package as follows:
 
 > パッケージを以下のように読み込みます。
 
-``` r
+```{r example, eval=FALSE}
 library(roadnetdb)
 ```
 
 ### Preparing the Database
 
-First, you need to prepare the database. roadnetdb works with PostgreSQL
-database. The package provides a function to launch the database using
-docker.
+First, you need to prepare the database.
+roadnetdb works with PostgreSQL database.
+The package provides a function to launch the database using docker.
 
 > まず、データベースを準備する必要があります。
 > roadnetdbでは、PostgreSQLを対象に動作するようになっています。
 > このパッケージでは、次の関数を用いてdockerによるデータベースの構築が可能です。
 
-``` r
+```{r launch_database, eval=FALSE}
 launch_database()
 ```
 
-The function builds the database with the user name and password
-specified in the arguments. The default settings are as follows:
+The function builds the database with the user name and password specified in the arguments.
+The default settings are as follows:
 
 > この関数は引数で指定したユーザ名とパスワードでデータベースを構築します。
 > デフォルトでは、以下のとおりに設定されています。
 
-| Property | Value      |
-|:---------|:-----------|
-| user     | admin      |
-| password | <p@ssw0rd> |
-| dbname   | roadnetdb  |
-| port     | 5432       |
+| Property | Value     |
+|:---------|:----------|
+| user     | admin     |
+| password | p@ssw0rd  |
+| dbname   | roadnetdb |
+| port     | 5432      |
 
-Road network calculation requires PostgreSQL extensions PostGIS and
-pgRouting. Each extension can be enabled as follows. You can also use
-the database without enabling these extensions.
+Road network calculation requires PostgreSQL extensions PostGIS and pgRouting.
+Each extension can be enabled as follows.
+You can also use the database without enabling these extensions.
 
 > 道路ネットワークの計算には、PostgreSQLの拡張機能であるPostGISとpgRoutingが必要です。
 > それぞれの拡張機能は次のようにして有効化できます。
 > なお、これらを有効化せずに通常のデータベースとして利用することもできます。
 
-``` r
+
+```{r enable_extension, eval=FALSE}
 enable_postgis()
 enable_pgrouting()
 ```
